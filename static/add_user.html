@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <title>Admin</title>
+    <body style="font-size: 0.8rem">
+    
+    <div class="row">
+        <div class="col-2">
+            <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/admin/users">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/transactions">Transactions</a>
+            </li>
+        
+            </ul>
+        
+        </div>
+        <div class="col-10">
+              <ul class="nav">
+                <li class="nav-item">
+                  <a class="text-muted nav-link" aria-current="page" href="/admin/users/add"><h6><i class="text-muted bi bi-plus-square-fill"></i> Add New User</h6></a>
+                </li>
+                <li class="nav-item">
+                  <a class="text-muted nav-link active" aria-current="page" href="/admin/users"><ins>All</ins></a>
+                </li>
+                <li class="nav-item">
+                  <a class="text-muted  nav-link" href="/admin/users?cond=paid"><ins>Only Paid</ins></a>
+                </li>
+                <li class="nav-item">
+                    <a class="text-muted  nav-link" href="/admin/users?cond=notpaid"><ins>Only Not Paid</ins></a>
+                </li>
+                <li class="nav-item">
+                    <a class="text-muted  nav-link" href="/admin/users?cond=ref"><ins>By Ref Link</ins></a>
+                </li>
+              </ul>
+              <hr>
+            <div class="row">
+                <div class="col-6">
+              <form method="POST" action="/admin/users/add">
+                <div class="mb-3">
+                  <label for="TGID" class="form-label">Telegram ID</label>
+                  <input type="text" class="form-control" id="TGID" name="telegram_id">
+                </div>
+                <div class="mb-3">
+                  <label for="bal" class="form-label">Balance</label>
+                  <input type="number" class="form-control" id="bal" name="balance">
+                </div>
+                <div class="mb-3">
+                    <label for="ben" class="form-label">Beneficiary ID</label>
+                    <input type="text" class="form-control" id="ben" name="beneficiary_id">
+                  </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="paid" name="is_paid">
+                  <label class="form-check-label" for="paid">Paid</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+              </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</head>
+    
+</body>
+</html>

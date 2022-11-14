@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <title>Admin</title>
+    <body style="font-size: 0.8rem">
+    
+    <div class="row">
+        <div class="col-2">
+            <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/admin/users">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/transactions">Transactions [{{len .}}]</a>
+            </li>
+        
+            </ul>
+        
+        </div>
+        <div class="col-10">
+            <ul class="nav">
+                <li class="nav-item">
+                  <a class="text-muted nav-link" aria-current="page" href="/admin/users/add"><h6><i class="text-muted bi bi-plus-square-fill"></i> Add Transaction</h6></a>
+                </li>
+                <li class="nav-item">
+                  <a class="text-muted nav-link active" aria-current="page" href="/admin/users"><ins>All</ins></a>
+                </li>
+                <li class="nav-item">
+                  <a class="text-muted  nav-link" href="/admin/users?cond=paid"><ins>Only Paid</ins></a>
+                </li>
+                <li class="nav-item">
+                    <a class="text-muted  nav-link" href="/admin/users?cond=notpaid"><ins>Only Not Paid</ins></a>
+                </li>
+                <li class="nav-item">
+                    <a class="text-muted  nav-link" href="/admin/users?cond=ref"><ins>By Ref Link</ins></a>
+                </li>
+              </ul>
+              <hr>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Card</th>
+                    <th scope="col">Telegram ID</th>
+                    <th scope="col">Created</th>
+                    <th scope="col">Changed</th>
+                    <th scope="col">Done</th>
+                    <th class="text-danger" scope="col">Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {{range .}} 
+                <tr>
+                    <td><a href="/admin/users/{{.Id}}">{{.Id}}</a></td>
+                    <td>{{.TelegramId}}</td>
+                    <td>{{.Amount}}</td>
+                    <td>{{.Card}}</td>
+                    <td>{{.User}}</td>
+                    <td>{{.CreatedAt.Format "Jan 02, 2006 15:04:05"}}</td>
+                    <td>{{.ChangedAt.Format "Jan 02, 2006 15:04:05"}}</td>
+                    <td>{{.Done}}</td>
+                    
+                    <td><form method="POST" action="/admin/users/delete">
+                        <input type="hidden" name="id" value="{{.Id}}"/>
+                        <button type="submit" class="btn btn-sm"><i class="bi bi-trash-fill text-danger"></i></button>
+                    </form></td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</head>
+    
+</body>
+</html>
